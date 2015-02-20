@@ -21,14 +21,6 @@
             android:label="@string/title_activity_play" >
         </activity>
         <activity
-            android:name=".CorrectActivity"
-            android:label="@string/title_activity_correct" >
-        </activity>
-        <activity
-            android:name=".FinishActivity"
-            android:label="@string/title_activity_finish" >
-        </activity>
-        <activity
             android:name=".ScoreboardActivity"
             android:label="@string/title_activity_scoreboard" >
         </activity>

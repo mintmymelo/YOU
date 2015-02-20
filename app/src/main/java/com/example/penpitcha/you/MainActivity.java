@@ -16,14 +16,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void playButtonClicked(View v) {
+    public void ButtonClicked(View v) {
         int id = v.getId();
         Intent i;
 
         switch(id) {
             case R.id.btPlay:
                 i = new Intent(this, PlayActivity.class);
-                startActivityForResult(i, 88);
+                startActivity(i);
                 break;
 
             case R.id.btScoreboard:
