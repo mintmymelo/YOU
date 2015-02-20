@@ -27,6 +27,7 @@ public class PlayActivity extends ActionBarActivity {
 
     GameDBHelper helper;
     SimpleCursorAdapter adapter;
+    Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +38,17 @@ public class PlayActivity extends ActionBarActivity {
         helper = new GameDBHelper(this);
 
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT question FROM vocabulary WHERE level='easy' and id=0;", null);
+        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=?;", new String[] {"easy"});
 
+        cursor.moveToFirst();
+        String word = cursor.getString(cursor.getColumnIndex("word"));
+        String question = cursor.getString(cursor.getColumnIndex("question"));
 
-        adapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_2, // A textview
-                cursor, // cursor to a data collection
-                new String[] {"question"}, // column to be displayed
-                new int[] {android.R.id.text1}, // ID of textview to display
-
-                0);
+        int i = word.indexOf('a');
+        question = question.substring(0,i) + word.charAt(i) + question.substring(i+1);
 
         TextView tvQ = (TextView)findViewById(R.id.tvQuestion);
-        //tvQ.setAdapter(adapter);
-        tvQ.setText(adapter);
+        tvQ.setText(question);
     }
 
 
