@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Please Enter Your Name"
         android:id="@+id/textView2"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="36dp"
         android:textSize="30dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
@@ -37,18 +37,20 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_marginTop="33dp"
         android:background="#fffeff8e"
         android:textSize="33dp"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="19dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:id="@+id/linearLayout">
+        android:layout_marginTop="40dp"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="vertical"
@@ -112,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PLAY"
-        android:id="@+id/button"
+        android:id="@+id/btPlay"
         android:background="#ff373737"
         android:textColor="#ffffffff"
         android:layout_below="@+id/linearLayout"
@@ -123,10 +125,11 @@
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="ScoreBoard"
-        android:id="@+id/button2"
+        android:id="@+id/btScoreboard"
         android:background="#ff373737"
         android:textColor="#ffffffff"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/btPlay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp" />
 
 </RelativeLayout>

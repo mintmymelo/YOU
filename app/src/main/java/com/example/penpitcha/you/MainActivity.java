@@ -1,9 +1,11 @@
 package com.example.penpitcha.you;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,6 +16,23 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void playButtonClicked(View v) {
+        int id = v.getId();
+        Intent i;
+
+        switch(id) {
+            case R.id.btPlay:
+                i = new Intent(this, PlayActivity.class);
+                startActivityForResult(i, 88);
+                break;
+
+            case R.id.btScoreboard:
+                i = new Intent(this, ScoreboardActivity.class);
+                startActivity(i);
+                break;
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
