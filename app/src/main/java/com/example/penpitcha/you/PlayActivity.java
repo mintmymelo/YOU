@@ -1,15 +1,12 @@
 package com.example.penpitcha.you;
 
-/**
- * Created by Penpitcha on 19-Feb-15.
- */
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class PlayActivityOld extends ActionBarActivity {
-    {
+
+public class PlayActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +18,7 @@ public class PlayActivityOld extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_play, menu);
         return true;
     }
 
@@ -39,6 +36,4 @@ public class PlayActivityOld extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
