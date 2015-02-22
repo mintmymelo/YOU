@@ -41,8 +41,10 @@ public class PlayActivity extends ActionBarActivity {
     TextView tvQ;
     TextView tvSV;
 
-    String newQ;
-    int newScore;
+    static String newQ;
+    static int newScore = 50;
+
+    int temp = 0;
 
 
     @Override
@@ -66,8 +68,19 @@ public class PlayActivity extends ActionBarActivity {
         tvQ = (TextView)findViewById(R.id.tvQuestion);
         tvQ.setText(question);
         tvSV = (TextView)findViewById(R.id.tvScoreValue);
-        tvSV.setText(Integer.toString(score));
+        tvSV.setText(Integer.toString(newScore));
 
+    }
+
+    public void setRound(){
+        cursor.moveToNext(); //get the next row
+
+        word = cursor.getString(cursor.getColumnIndex("word"));
+        question = cursor.getString(cursor.getColumnIndex("question"));
+
+        tvQ.setText(question);
+        tvSV.setText(Integer.toString(newScore));
+        tvRV.setText(Integer.toString(n));
     }
 
     private void loadActivity(String newQ, int newScore){
@@ -78,10 +91,15 @@ public class PlayActivity extends ActionBarActivity {
         //playLevel = it.getStringExtra("playerLevel");
 
 
+        if(newQ.indexOf('_') == -1){
+            temp--;
+            n++;
+            setRound();
+        }else{
+            tvQ.setText(newQ);
 
-        tvQ.setText(newQ);
-
-        tvSV.setText(Integer.toString(newScore));
+            tvSV.setText(Integer.toString(newScore));
+        }
     }
 
     public String searchAndReplace(String word, String question, Character xxx){
@@ -89,10 +107,10 @@ public class PlayActivity extends ActionBarActivity {
         int indexSpace = question.indexOf('_');
 
         if(indexLetter == -1){
-            newScore = score--;
+            newScore = newScore--;
         }else{
             if(indexLetter != indexSpace){
-                newScore = score--;
+                newScore = newScore--;
             }else{
                 question = question.substring(0,indexLetter) + word.charAt(indexLetter) + question.substring(indexLetter+1);
             }
@@ -109,14 +127,52 @@ public class PlayActivity extends ActionBarActivity {
         switch(id) {
             case R.id.btA:
 
-                newQ = searchAndReplace(word,question,'A');
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'a');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'a');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btB:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'b');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'b');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btL:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'l');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'l');
+                }
+
                 loadActivity(newQ,newScore);
 
                 break;
 
             case R.id.btR:
 
-                newQ = searchAndReplace(word,question,'R');
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'r');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'r');
+                }
+
                 loadActivity(newQ,newScore);
 
                 break;
