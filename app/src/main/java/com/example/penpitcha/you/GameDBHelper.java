@@ -29,7 +29,7 @@ public class GameDBHelper extends SQLiteOpenHelper {
         sql = "CREATE TABLE scoreboard ( " +
                 "_id integer primary key autoincrement," +
                 "name text not null," +             // e.g. Bgcomedian
-                "score text not null ," +           // e.g.15
+                "score integer not null ," +           // e.g.15
                 "level text not null);";         // easy,medium,hard
         db.execSQL(sql);
 

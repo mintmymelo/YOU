@@ -1,14 +1,21 @@
 package com.example.penpitcha.you;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    SQLiteDatabase db;
+    GameDBHelper helper = new GameDBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +29,33 @@ public class MainActivity extends ActionBarActivity {
 
         switch(id) {
             case R.id.btPlay:
+
+                EditText etName = (EditText) findViewById(R.id.etName);
+                String name = etName.getText().toString();
+
+                RadioGroup rLevel = (RadioGroup)findViewById(R.id.rbtLevel);
+                int level = rLevel.getCheckedRadioButtonId();
+
+                String levelName;
+
+                if(level == 1) {
+                    levelName = "easy";
+                }else if(level == 2){
+                    levelName = "medium";
+                }else{
+                    levelName = "hard";
+                }
+
+                db = helper.getWritableDatabase();
+                ContentValues r = new ContentValues();
+                r.put("name", name);
+                r.put("score", 50);
+                r.put("level", levelName);
+                long new_id = db.insert("scoreboard", null, r);
+
                 i = new Intent(this, PlayActivity.class);
+                //i.putExtra("playerID", new_id);
+                //i.putExtra("playerLevel", levelName);
                 startActivity(i);
                 break;
 

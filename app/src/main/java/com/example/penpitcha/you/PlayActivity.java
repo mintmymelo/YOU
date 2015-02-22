@@ -28,27 +28,77 @@ public class PlayActivity extends ActionBarActivity {
     GameDBHelper helper;
     SimpleCursorAdapter adapter;
     Cursor cursor;
+    String playID;
+    String playLevel;
+    SQLiteDatabase db;
+    int score = 50;
+    int n = 1;
+
+    String word;
+    String question;
+
+    TextView tvRV;
+    TextView tvQ;
+    TextView tvSV;
+
+    String newQ;
+    int newScore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+        tvRV = (TextView)findViewById(R.id.tvRoundValue);
+        tvRV.setText(Integer.toString(n));
 
         helper = new GameDBHelper(this);
 
-        SQLiteDatabase db = helper.getReadableDatabase();
+        db = helper.getReadableDatabase();
         cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=?;", new String[] {"easy"});
 
-        cursor.moveToFirst();
-        String word = cursor.getString(cursor.getColumnIndex("word"));
-        String question = cursor.getString(cursor.getColumnIndex("question"));
+        cursor.moveToFirst(); //get the first row
 
-        int i = word.indexOf('a');
-        question = question.substring(0,i) + word.charAt(i) + question.substring(i+1);
+        word = cursor.getString(cursor.getColumnIndex("word"));
+        question = cursor.getString(cursor.getColumnIndex("question"));
 
-        TextView tvQ = (TextView)findViewById(R.id.tvQuestion);
+        tvQ = (TextView)findViewById(R.id.tvQuestion);
         tvQ.setText(question);
+        tvSV = (TextView)findViewById(R.id.tvScoreValue);
+        tvSV.setText(Integer.toString(score));
+
+    }
+
+    private void loadActivity(String newQ, int newScore){
+        // Get the intent used to create this activity
+        //Intent i = this.getIntent();
+        // Get a string value named "value1"
+        //playID = it.getStringExtra("playerID");
+        //playLevel = it.getStringExtra("playerLevel");
+
+
+
+        tvQ.setText(newQ);
+
+        tvSV.setText(Integer.toString(newScore));
+    }
+
+    public String searchAndReplace(String word, String question, Character xxx){
+        int indexLetter = word.indexOf(xxx);
+        int indexSpace = question.indexOf('_');
+
+        if(indexLetter == -1){
+            newScore = score--;
+        }else{
+            if(indexLetter != indexSpace){
+                newScore = score--;
+            }else{
+                question = question.substring(0,indexLetter) + word.charAt(indexLetter) + question.substring(indexLetter+1);
+            }
+        }
+
+        return question;
     }
 
 
@@ -57,16 +107,24 @@ public class PlayActivity extends ActionBarActivity {
         Intent i;
 
         switch(id) {
-            case R.id.btOK:
+            case R.id.btA:
 
-                for(int n = 1 ; n<=5 ; n++) {
-
-
-                }
+                newQ = searchAndReplace(word,question,'A');
+                loadActivity(newQ,newScore);
 
                 break;
 
+            case R.id.btR:
+
+                newQ = searchAndReplace(word,question,'R');
+                loadActivity(newQ,newScore);
+
+                break;
         }
+    }
+
+    public void finishPlay(){
+
     }
 
     @Override
