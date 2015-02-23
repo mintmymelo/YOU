@@ -84,7 +84,8 @@ android:gravity="center|center_vertical|center_horizontal"
         android:id="@+id/linearLayout4"
         android:gravity="center"
         android:layout_below="@+id/tvQuestion"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp">
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -327,18 +328,6 @@ android:gravity="center|center_vertical|center_horizontal"
                 android:onClick="ButtonClicked" />
         </GridLayout>
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        android:id="@+id/btOK"
-        android:background="#ff373737"
-        android:textColor="#ffffff"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/linearLayout4"
-        android:layout_centerHorizontal="true"
-        android:onClick="ButtonClicked" />
 
     <TextView
         android:layout_width="wrap_content"
