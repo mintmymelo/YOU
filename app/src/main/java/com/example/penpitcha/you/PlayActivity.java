@@ -1,5 +1,6 @@
 package com.example.penpitcha.you;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -18,11 +19,11 @@ public class PlayActivity extends ActionBarActivity {
     GameDBHelper helper;
     SimpleCursorAdapter adapter;
     Cursor cursor;
-    String playID;
+    String playName;
     String playLevel;
     SQLiteDatabase db;
     int score = 50;
-    static int n = 1;
+    int n = 1;
 
     String word;
     String question;
@@ -32,9 +33,11 @@ public class PlayActivity extends ActionBarActivity {
     TextView tvSV;
 
     static String newQ;
-    static int newScore = 50;
+    int newScore = 50;
 
     static int temp = 0;
+
+    ContentValues r;
 
 
     @Override
@@ -42,13 +45,19 @@ public class PlayActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+
+        Intent it = this.getIntent();
+
+        playName = it.getStringExtra("playerName");
+        playLevel = it.getStringExtra("playerLevel");
+
         tvRV = (TextView)findViewById(R.id.tvRoundValue);
         tvRV.setText(Integer.toString(n));
 
         helper = new GameDBHelper(this);
 
         db = helper.getReadableDatabase();
-        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=?;", new String[]{"easy"});
+        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=?;", new String[]{playLevel});
 
         cursor.moveToFirst(); //get the first row
 
@@ -64,6 +73,17 @@ public class PlayActivity extends ActionBarActivity {
 
     public void setRound(){
         if(cursor.isLast()){
+
+            db = helper.getWritableDatabase();
+            ContentValues r = new ContentValues();
+            r.put("name", playName);
+            r.put("score", newScore);
+            r.put("level", playLevel);
+            long new_id = db.insert("scoreboard", null, r);
+
+            //System.out.println("updated id ==================================== = " + new_id);
+
+
             finish();
         }else {
             cursor.moveToNext(); //get the next row
@@ -79,11 +99,7 @@ public class PlayActivity extends ActionBarActivity {
     }
 
     public void loadActivity(String newQ, int newScore){
-        // Get the intent used to create this activity
-        //Intent i = this.getIntent();
-        // Get a string value named "value1"
-        //playID = it.getStringExtra("playerID");
-        //playLevel = it.getStringExtra("playerLevel");
+
 
 
         if(newQ.indexOf('_') == -1){
@@ -119,19 +135,22 @@ public class PlayActivity extends ActionBarActivity {
 
                 }
             }
-
-
         }
-
         return question;
     }
 
 
     public void ButtonClicked(View v) {
         int id = v.getId();
-        Intent i;
 
         switch(id) {
+
+            case R.id.btNewGame:
+
+                finish();
+
+                break;
+
             case R.id.btA:
 
                 temp++;

@@ -37,7 +37,7 @@ public class GameDBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         sql = "INSERT INTO vocabulary (word,question,level) VALUES ('nothing','n_thi_g','easy');";
         db.execSQL(sql);
-        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('force','fo_c_e','easy');";
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('force','fo_c_','easy');";
         db.execSQL(sql);
         sql = "INSERT INTO vocabulary (word,question,level) VALUES ('suddenly','sud_e_ly','easy');";
         db.execSQL(sql);
@@ -47,7 +47,7 @@ public class GameDBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         sql = "INSERT INTO vocabulary (word,question,level) VALUES ('acquiesce','ac_uie_ce','medium');";
         db.execSQL(sql);
-        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('spasm','_ _asm','medium');";
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('spasm','__asm','medium');";
         db.execSQL(sql);
         sql = "INSERT INTO vocabulary (word,question,level) VALUES ('venture','_ent_re','medium');";
         db.execSQL(sql);
@@ -59,7 +59,7 @@ public class GameDBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         sql = "INSERT INTO vocabulary (word,question,level) VALUES ('kakistocracy','kak_sto_ra_y','hard');" ;
         db.execSQL(sql);
-        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('galeanthropy','gal_ _nth_ _y','hard');" ;
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('galeanthropy','gal__nth__py','hard');" ;
         db.execSQL(sql);
         sql = "INSERT INTO vocabulary (word,question,level) VALUES ('lethologica','_eth_lo_ica','hard');" ;
         db.execSQL(sql);

@@ -38,24 +38,18 @@ public class MainActivity extends ActionBarActivity {
 
                 String levelName;
 
-                if(level == 1) {
+                if(level == R.id.btEasy) {
                     levelName = "easy";
-                }else if(level == 2){
+                }else if(level == R.id.btMedium){
                     levelName = "medium";
                 }else{
                     levelName = "hard";
                 }
 
-                db = helper.getWritableDatabase();
-                ContentValues r = new ContentValues();
-                r.put("name", name);
-                r.put("score", 50);
-                r.put("level", levelName);
-                long new_id = db.insert("scoreboard", null, r);
 
                 i = new Intent(this, PlayActivity.class);
-                //i.putExtra("playerID", new_id);
-                //i.putExtra("playerLevel", levelName);
+                i.putExtra("playerName", name);
+                i.putExtra("playerLevel", levelName);
                 startActivity(i);
                 break;
 

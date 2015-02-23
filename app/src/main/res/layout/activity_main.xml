@@ -47,7 +47,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/linearLayout"
         android:layout_below="@+id/etName"
         android:layout_alignParentStart="true">
@@ -120,7 +120,7 @@
         android:textColor="#ffffffff"
         android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="20dp"
         android:onClick="ButtonClicked" />
 
     <Button
@@ -132,7 +132,7 @@
         android:textColor="#ffffffff"
         android:layout_below="@+id/btPlay"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="20dp"
         android:onClick="ButtonClicked" />
 
 </RelativeLayout>

@@ -85,7 +85,7 @@ android:gravity="center|center_vertical|center_horizontal"
         android:gravity="center"
         android:layout_below="@+id/tvQuestion"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="25dp">
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -334,8 +334,20 @@ android:gravity="center|center_vertical|center_horizontal"
         android:layout_height="wrap_content"
         android:text="Question"
         android:id="@+id/tvQuestion"
-        android:textSize="70dp"
+        android:textSize="60dp"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="New Game"
+        android:id="@+id/btNewGame"
+        android:layout_below="@+id/linearLayout4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="#ff373737"
+        android:textColor="#ffffff"
+        android:onClick="ButtonClicked" />
 
 </RelativeLayout>
