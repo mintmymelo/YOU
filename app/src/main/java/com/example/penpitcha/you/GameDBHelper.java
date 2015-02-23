@@ -33,22 +33,35 @@ public class GameDBHelper extends SQLiteOpenHelper {
                 "level text not null);";         // easy,medium,hard
         db.execSQL(sql);
 
-        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('trouble','t_oub_e','easy');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('nothing','n_thi_g','easy');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('force','fo_c_e','easy');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('suddenly','sud_e_ly','easy');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('decide','d_ci_e','easy');"+
-                "INSERT INTO vocabulary (word,question,level) VALUES ('peculiar','p_cul_ar','medium');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('acquiesce','ac_uie_ce','medium');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('spasm','_ _asm','medium');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('venture','_ent_re','medium');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('omnivore','o_ni_o_e','medium');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('nubivagant','nu_i_aga_t','hard');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('alexithymia','ale_i_h_m_a','hard');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('kakistocracy','kak_sto_ra_y','hard');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('galeanthropy','gal_ _nth_ _y','hard');" +
-                "INSERT INTO vocabulary (word,question,level) VALUES ('lethologica','_eth_lo_ica','hard');" ;
-
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('trouble','t_oub_e','easy');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('nothing','n_thi_g','easy');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('force','fo_c_e','easy');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('suddenly','sud_e_ly','easy');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('decide','d_ci_e','easy');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('peculiar','p_cul_ar','medium');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('acquiesce','ac_uie_ce','medium');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('spasm','_ _asm','medium');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('venture','_ent_re','medium');";
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('omnivore','o_ni_o_e','medium');" ;
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('nubivagant','nu_i_aga_t','hard');" ;
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('alexithymia','ale_i_h_m_a','hard');" ;
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('kakistocracy','kak_sto_ra_y','hard');" ;
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('galeanthropy','gal_ _nth_ _y','hard');" ;
+        db.execSQL(sql);
+        sql = "INSERT INTO vocabulary (word,question,level) VALUES ('lethologica','_eth_lo_ica','hard');" ;
         db.execSQL(sql);
 
 

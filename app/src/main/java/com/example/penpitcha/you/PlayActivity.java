@@ -9,18 +9,8 @@ import android.view.View;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.TextView;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
+
 
 
 public class PlayActivity extends ActionBarActivity {
@@ -32,7 +22,7 @@ public class PlayActivity extends ActionBarActivity {
     String playLevel;
     SQLiteDatabase db;
     int score = 50;
-    int n = 1;
+    static int n = 1;
 
     String word;
     String question;
@@ -44,7 +34,7 @@ public class PlayActivity extends ActionBarActivity {
     static String newQ;
     static int newScore = 50;
 
-    int temp = 0;
+    static int temp = 0;
 
 
     @Override
@@ -58,7 +48,7 @@ public class PlayActivity extends ActionBarActivity {
         helper = new GameDBHelper(this);
 
         db = helper.getReadableDatabase();
-        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=?;", new String[] {"easy"});
+        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=?;", new String[]{"easy"});
 
         cursor.moveToFirst(); //get the first row
 
@@ -73,17 +63,22 @@ public class PlayActivity extends ActionBarActivity {
     }
 
     public void setRound(){
-        cursor.moveToNext(); //get the next row
+        if(cursor.isLast()){
+            finish();
+        }else {
+            cursor.moveToNext(); //get the next row
 
-        word = cursor.getString(cursor.getColumnIndex("word"));
-        question = cursor.getString(cursor.getColumnIndex("question"));
 
-        tvQ.setText(question);
-        tvSV.setText(Integer.toString(newScore));
-        tvRV.setText(Integer.toString(n));
+            word = cursor.getString(cursor.getColumnIndex("word"));
+            question = cursor.getString(cursor.getColumnIndex("question"));
+
+            tvQ.setText(question);
+            tvSV.setText(Integer.toString(newScore));
+            tvRV.setText(Integer.toString(n));
+        }
     }
 
-    private void loadActivity(String newQ, int newScore){
+    public void loadActivity(String newQ, int newScore){
         // Get the intent used to create this activity
         //Intent i = this.getIntent();
         // Get a string value named "value1"
@@ -92,7 +87,7 @@ public class PlayActivity extends ActionBarActivity {
 
 
         if(newQ.indexOf('_') == -1){
-            temp--;
+            temp = 0;
             n++;
             setRound();
         }else{
@@ -104,16 +99,28 @@ public class PlayActivity extends ActionBarActivity {
 
     public String searchAndReplace(String word, String question, Character xxx){
         int indexLetter = word.indexOf(xxx);
-        int indexSpace = question.indexOf('_');
+        int y;
 
         if(indexLetter == -1){
-            newScore = newScore--;
+            newScore--;
         }else{
-            if(indexLetter != indexSpace){
-                newScore = newScore--;
-            }else{
-                question = question.substring(0,indexLetter) + word.charAt(indexLetter) + question.substring(indexLetter+1);
+
+            for(y = 0; y < word.length(); y++){
+
+                if(word.charAt(y) == xxx){
+
+                    if(question.charAt(y) != '_'){
+                        newScore--;
+                    }else{
+                        question = question.substring(0,y) + word.charAt(y) + question.substring(y+1);
+                    }
+
+                }else{
+
+                }
             }
+
+
         }
 
         return question;
@@ -151,6 +158,123 @@ public class PlayActivity extends ActionBarActivity {
 
                 break;
 
+            case R.id.btC:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'c');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'c');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btD:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'd');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'd');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btE:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'e');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'e');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btF:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'f');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'f');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btG:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'g');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'g');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btH:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'h');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'h');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btI:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'i');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'i');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btJ:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'j');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'j');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btK:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'k');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'k');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
             case R.id.btL:
 
                 temp++;
@@ -164,6 +288,72 @@ public class PlayActivity extends ActionBarActivity {
 
                 break;
 
+            case R.id.btM:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'm');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'm');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btN:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'n');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'n');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btO:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'o');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'o');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btP:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'p');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'p');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btQ:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'q');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'q');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+
             case R.id.btR:
 
                 temp++;
@@ -171,6 +361,110 @@ public class PlayActivity extends ActionBarActivity {
                     newQ = searchAndReplace(word, question, 'r');
                 }else{
                     newQ = searchAndReplace(word, newQ, 'r');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btS:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 's');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 's');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btT:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 't');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 't');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btU:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'u');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'u');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btV:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'v');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'v');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btW:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'w');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'w');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btX:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'x');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'x');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btY:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'y');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'y');
+                }
+
+                loadActivity(newQ,newScore);
+
+                break;
+
+            case R.id.btZ:
+
+                temp++;
+                if(temp == 1) {
+                    newQ = searchAndReplace(word, question, 'z');
+                }else{
+                    newQ = searchAndReplace(word, newQ, 'z');
                 }
 
                 loadActivity(newQ,newScore);
