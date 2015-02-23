@@ -31,55 +31,87 @@ public class ScoreboardActivity extends ActionBarActivity {
 
     public void ButtonClicked(View v) {
         int id = v.getId();
-        Intent i;
         TextView tvSBLevelName;
-        String name;
-        int score;
+        Cursor cursor;
+        ListView lv;
 
         switch(id) {
             case R.id.btSBEasy:
 
                 tvSBLevelName = (TextView) findViewById(R.id.tvSBLevelName);
-                tvSBLevelName.setText("----------- [ Level : Easy ] -----------");
+                tvSBLevelName.setText("------------ [ Level : Easy ] ------------");
 
                 helper = new GameDBHelper(this);
                 db = helper.getReadableDatabase();
-                Cursor cursor = db.rawQuery("SELECT name FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"easy"});
-
-                //cursor.moveToFirst(); // get the first row
-
-                //name = cursor.getString(cursor.getColumnIndex("name"));
-                //score = cursor.getInt(cursor.getColumnIndex("score"));
+                cursor = db.rawQuery("SELECT _id, (name || '        ' || score) ns FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"easy"});
 
                 adapter = new SimpleCursorAdapter(this,
                         android.R.layout.simple_list_item_1, // A textview
                         cursor, // cursor to a data collection
-                        new String[] {"name"}, // column to be displayed
+                        new String[] {"ns"}, // column to be displayed
                         new int[] {android.R.id.text1}, // ID of textview to display
                         0);
 
-                ListView lv = (ListView)findViewById(R.id.listView);
+                lv = (ListView)findViewById(R.id.listView);
                 lv.setAdapter(adapter);
-
 
                 break;
 
             case R.id.btSBMedium:
 
                 tvSBLevelName = (TextView) findViewById(R.id.tvSBLevelName);
-                tvSBLevelName.setText("----------- [ Level : Medium ] -----------");
+                tvSBLevelName.setText("--------- [ Level : Medium ] ---------");
 
+                helper = new GameDBHelper(this);
+                db = helper.getReadableDatabase();
+                cursor = db.rawQuery("SELECT _id, (name || '        ' || score) ns FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"medium"});
+
+                adapter = new SimpleCursorAdapter(this,
+                        android.R.layout.simple_list_item_1, // A textview
+                        cursor, // cursor to a data collection
+                        new String[] {"ns"}, // column to be displayed
+                        new int[] {android.R.id.text1}, // ID of textview to display
+                        0);
+
+                lv = (ListView)findViewById(R.id.listView);
+                lv.setAdapter(adapter);
 
                 break;
 
             case R.id.btSBHard:
 
                 tvSBLevelName = (TextView) findViewById(R.id.tvSBLevelName);
-                tvSBLevelName.setText("----------- [ Level : Hard ] -----------");
+                tvSBLevelName.setText("------------ [ Level : Hard ] ------------");
 
+                helper = new GameDBHelper(this);
+                db = helper.getReadableDatabase();
+                cursor = db.rawQuery("SELECT _id, (name || '        ' || score) ns FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"hard"});
+
+                adapter = new SimpleCursorAdapter(this,
+                        android.R.layout.simple_list_item_1, // A textview
+                        cursor, // cursor to a data collection
+                        new String[] {"ns"}, // column to be displayed
+                        new int[] {android.R.id.text1}, // ID of textview to display
+                        0);
+
+                lv = (ListView)findViewById(R.id.listView);
+                lv.setAdapter(adapter);
 
                 break;
 
+            case R.id.btBack2Main:
+
+                finish();
+
+                break;
+
+            case R.id.btResetList:
+
+                db = helper.getWritableDatabase();
+                int n_rows = db.delete("scoreboard", "", null);
+
+
+                break;
         }
     }
 

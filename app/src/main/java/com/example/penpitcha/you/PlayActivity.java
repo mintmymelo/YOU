@@ -17,12 +17,10 @@ import android.widget.SimpleCursorAdapter;
 public class PlayActivity extends ActionBarActivity {
 
     GameDBHelper helper;
-    SimpleCursorAdapter adapter;
     Cursor cursor;
     String playName;
     String playLevel;
     SQLiteDatabase db;
-    int score = 50;
     int n = 1;
 
     String word;
@@ -75,16 +73,16 @@ public class PlayActivity extends ActionBarActivity {
         if(cursor.isLast()){
 
             db = helper.getWritableDatabase();
-            ContentValues r = new ContentValues();
+            r = new ContentValues();
             r.put("name", playName);
             r.put("score", newScore);
             r.put("level", playLevel);
             long new_id = db.insert("scoreboard", null, r);
 
-            //System.out.println("updated id ==================================== = " + new_id);
-
+            System.out.println("updated id ==================================== = " + new_id);
 
             finish();
+
         }else {
             cursor.moveToNext(); //get the next row
 
@@ -100,15 +98,15 @@ public class PlayActivity extends ActionBarActivity {
 
     public void loadActivity(String newQ, int newScore){
 
-
-
         if(newQ.indexOf('_') == -1){
+
             temp = 0;
             n++;
             setRound();
-        }else{
-            tvQ.setText(newQ);
 
+        }else{
+
+            tvQ.setText(newQ);
             tvSV.setText(Integer.toString(newScore));
         }
     }
@@ -490,10 +488,6 @@ public class PlayActivity extends ActionBarActivity {
 
                 break;
         }
-    }
-
-    public void finishPlay(){
-
     }
 
     @Override

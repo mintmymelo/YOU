@@ -4,358 +4,144 @@
     android:layout_height="match_parent"
     android:background="#FFFF983D">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Scoreboard"
-        android:id="@+id/textView20"
-        android:layout_marginTop="30dp"
-        android:textSize="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:gravity="center">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Easy"
-        android:id="@+id/btSBEasy"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView20"
-        android:layout_alignParentStart="true"
-        android:background="#ff373737"
-        android:textColor="#ffffffff"
-        android:onClick="ButtonClicked" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scoreboard"
+            android:id="@+id/tvHeadText"
+            android:layout_marginTop="18dp"
+            android:textSize="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium"
-        android:id="@+id/btSBMedium"
-        android:layout_alignTop="@+id/btSBEasy"
-        android:layout_centerHorizontal="true"
-        android:textColor="#ffffffff"
-        android:background="#ff373737"
-        android:onClick="ButtonClicked" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hard"
-        android:id="@+id/btSBHard"
-        android:layout_alignTop="@+id/btSBMedium"
-        android:layout_toEndOf="@+id/btSBMedium"
-        android:layout_marginStart="34dp"
-        android:textColor="#ffffffff"
-        android:background="#ff373737"
-        android:onClick="ButtonClicked" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Easy"
+                android:id="@+id/btSBEasy"
+                android:layout_below="@+id/tvHeadText"
+                android:layout_alignParentStart="true"
+                android:background="#ff373737"
+                android:textColor="#ffffffff"
+                android:onClick="ButtonClicked"
+                android:layout_marginRight="10dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reset"
-        android:id="@+id/button10"
-        android:background="#ff373737"
-        android:textColor="#ffffffff"
-        android:layout_alignTop="@+id/button11"
-        android:layout_alignEnd="@+id/tvR10S" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Medium"
+                android:id="@+id/btSBMedium"
+                android:layout_alignTop="@+id/btSBEasy"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffffff"
+                android:background="#ff373737"
+                android:onClick="ButtonClicked" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:id="@+id/button11"
-        android:background="#ff373737"
-        android:textColor="#ffffffff"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/tvR10N"
-        android:layout_toStartOf="@+id/btSBMedium" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Hard"
+                android:id="@+id/btSBHard"
+                android:layout_alignTop="@+id/btSBMedium"
+                android:layout_toEndOf="@+id/btSBMedium"
+                android:textColor="#ffffffff"
+                android:background="#ff373737"
+                android:onClick="ButtonClicked"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rank"
-        android:id="@+id/textView21"
-        android:layout_marginTop="62dp"
-        android:layout_below="@+id/btSBEasy"
-        android:layout_alignStart="@+id/button11" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="----------- [ Level : Easy ] -----------"
+            android:id="@+id/tvSBLevelName"
+            android:layout_below="@+id/btSBMedium"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_marginTop="9dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:id="@+id/textView22"
-        android:layout_alignTop="@+id/textView21"
-        android:layout_toEndOf="@+id/btSBEasy"
-        android:layout_marginStart="16dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_marginTop="9dp"
+            android:visibility="invisible">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Score"
-        android:id="@+id/textView23"
-        android:layout_alignBottom="@+id/textView22"
-        android:layout_alignEnd="@+id/button10" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rank"
+                android:id="@+id/tvRank"
+                android:layout_below="@+id/tvSBLevelName"
+                android:layout_alignStart="@+id/tvSBLevelName"
+                android:layout_marginRight="60dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:id="@+id/textView24"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@+id/textView21"
-        android:layout_alignEnd="@+id/textView21"
-        android:layout_marginTop="9dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:id="@+id/tvName"
+                android:layout_alignTop="@+id/tvRank"
+                android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BGComedian"
-        android:id="@+id/tvR1N"
-        android:layout_alignTop="@+id/textView24"
-        android:layout_toEndOf="@+id/btSBEasy" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score"
+                android:id="@+id/tvScore"
+                android:layout_alignTop="@+id/tvName"
+                android:layout_alignEnd="@+id/tvSBLevelName"
+                android:layout_marginLeft="60dp" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="14"
-        android:id="@+id/tvR1S"
-        android:layout_alignTop="@+id/tvR1N"
-        android:layout_toEndOf="@+id/textView20" />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:id="@+id/listView"
+            android:smoothScrollbar="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2"
-        android:id="@+id/textView27"
-        android:layout_below="@+id/textView24"
-        android:layout_alignStart="@+id/textView24" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_marginTop="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR2N"
-        android:layout_below="@+id/tvR1N"
-        android:layout_alignStart="@+id/tvR1N" />
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:text="Main Menu"
+                android:id="@+id/btBack2Main"
+                android:background="#ff373737"
+                android:textColor="#ffffffff"
+                android:onClick="ButtonClicked"
+                android:layout_marginRight="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR2S"
-        android:layout_alignTop="@+id/tvR2N"
-        android:layout_alignStart="@+id/tvR1S" />
+            <Button
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="Reset"
+                android:id="@+id/btResetList"
+                android:background="#ff373737"
+                android:textColor="#ffffffff"
+                android:layout_alignTop="@+id/btBack2Main"
+                android:layout_toEndOf="@+id/tvName" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="----------- [ Level : Easy ] -----------"
-        android:id="@+id/tvSBLevelName"
-        android:layout_below="@+id/btSBMedium"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3"
-        android:id="@+id/textView31"
-        android:layout_below="@+id/textView27"
-        android:layout_alignStart="@+id/textView27" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4"
-        android:id="@+id/textView32"
-        android:layout_below="@+id/textView31"
-        android:layout_alignStart="@+id/textView31" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5"
-        android:id="@+id/textView33"
-        android:layout_below="@+id/textView32"
-        android:layout_alignStart="@+id/textView32" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="6"
-        android:id="@+id/textView34"
-        android:layout_below="@+id/textView33"
-        android:layout_alignStart="@+id/textView33" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR3N"
-        android:layout_below="@+id/tvR2N"
-        android:layout_alignStart="@+id/tvR2N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR4N"
-        android:layout_below="@+id/tvR3N"
-        android:layout_alignStart="@+id/tvR3N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR5N"
-        android:layout_below="@+id/tvR4N"
-        android:layout_alignStart="@+id/tvR4N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR6N"
-        android:layout_below="@+id/tvR5N"
-        android:layout_alignStart="@+id/tvR5N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR7N"
-        android:layout_below="@+id/tvR6N"
-        android:layout_alignLeft="@+id/tvR5N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR8N"
-        android:layout_below="@+id/tvR7N"
-        android:layout_alignLeft="@+id/tvR5N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR9N"
-        android:layout_below="@+id/tvR8N"
-        android:layout_alignLeft="@+id/tvR5N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mintmymelo"
-        android:id="@+id/tvR10N"
-        android:layout_below="@+id/tvR9N"
-        android:layout_alignLeft="@+id/tvR5N" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR3S"
-        android:layout_below="@+id/tvR2S"
-        android:layout_alignStart="@+id/tvR2S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR4S"
-        android:layout_below="@+id/tvR3S"
-        android:layout_alignStart="@+id/tvR3S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR5S"
-        android:layout_below="@+id/tvR4S"
-        android:layout_alignStart="@+id/tvR4S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR6S"
-        android:layout_below="@+id/tvR5S"
-        android:layout_alignStart="@+id/tvR5S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR7S"
-        android:layout_below="@+id/tvR6S"
-        android:layout_alignStart="@+id/tvR6S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR8S"
-        android:layout_alignTop="@+id/tvR8N"
-        android:layout_alignStart="@+id/tvR7S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR9S"
-        android:layout_below="@+id/tvR8S"
-        android:layout_alignStart="@+id/tvR8S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12"
-        android:id="@+id/tvR10S"
-        android:layout_below="@+id/tvR9S"
-        android:layout_alignStart="@+id/tvR9S" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="7"
-        android:id="@+id/textView30"
-        android:layout_below="@+id/textView34"
-        android:layout_alignStart="@+id/textView34" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="8"
-        android:id="@+id/textView35"
-        android:layout_above="@+id/tvR9N"
-        android:layout_alignStart="@+id/textView30" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="9"
-        android:id="@+id/textView36"
-        android:layout_below="@+id/tvR8N"
-        android:layout_alignStart="@+id/textView35" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="10"
-        android:id="@+id/textView37"
-        android:layout_below="@+id/textView36"
-        android:layout_alignEnd="@+id/textView36" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_marginTop="230dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="150dp" />
+    </LinearLayout>
 
 </RelativeLayout>
