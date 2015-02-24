@@ -50,7 +50,7 @@ public class PlayActivity extends ActionBarActivity {
         playLevel = it.getStringExtra("playerLevel");
 
         tvRV = (TextView)findViewById(R.id.tvRoundValue);
-        tvRV.setText(Integer.toString(n));
+        tvRV.setText(Integer.toString(n)+"/5");
 
         helper = new GameDBHelper(this);
 
@@ -79,7 +79,7 @@ public class PlayActivity extends ActionBarActivity {
             r.put("level", playLevel);
             long new_id = db.insert("scoreboard", null, r);
 
-            System.out.println("updated id ==================================== = " + new_id);
+            //System.out.println("updated id ==================================== = " + new_id);
 
             finish();
 
@@ -92,7 +92,7 @@ public class PlayActivity extends ActionBarActivity {
 
             tvQ.setText(question);
             tvSV.setText(Integer.toString(newScore));
-            tvRV.setText(Integer.toString(n));
+            tvRV.setText(Integer.toString(n)+"/5");
         }
     }
 
@@ -127,6 +127,16 @@ public class PlayActivity extends ActionBarActivity {
 
         if(indexLetter == -1){
             newScore--;
+
+            if(newScore < 0){
+                Toast t = Toast.makeText(this.getApplicationContext(),
+                        "GAME OVER !!! BYE...",
+                        Toast.LENGTH_LONG);
+                t.show();
+
+                finish();
+            }
+
         }else{
 
             for(y = 0; y < word.length(); y++){
@@ -144,12 +154,20 @@ public class PlayActivity extends ActionBarActivity {
                     }
 
                 }else{
-
                 }
             }
 
             if(isWrong){
                 newScore--;
+
+                if(newScore < 0){
+                    Toast t = Toast.makeText(this.getApplicationContext(),
+                            "GAME OVER !!! BYE...",
+                            Toast.LENGTH_LONG);
+                    t.show();
+
+                    finish();
+                }
             }
         }
         return question;
