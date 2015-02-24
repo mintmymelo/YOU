@@ -66,7 +66,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="----------- [ Level : Easy ] -----------"
             android:id="@+id/tvSBLevelName"
             android:layout_below="@+id/btSBMedium"
             android:layout_centerHorizontal="true"
@@ -139,7 +138,8 @@
                 android:background="#ff373737"
                 android:textColor="#ffffffff"
                 android:layout_alignTop="@+id/btBack2Main"
-                android:layout_toEndOf="@+id/tvName" />
+                android:layout_toEndOf="@+id/tvName"
+                android:onClick="ButtonClicked" />
         </LinearLayout>
 
     </LinearLayout>

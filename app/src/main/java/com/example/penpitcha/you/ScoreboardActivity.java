@@ -43,13 +43,13 @@ public class ScoreboardActivity extends ActionBarActivity {
 
                 helper = new GameDBHelper(this);
                 db = helper.getReadableDatabase();
-                cursor = db.rawQuery("SELECT _id, (name || '        ' || score) ns FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"easy"});
+                cursor = db.rawQuery("SELECT _id, name, score FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"easy"});
 
                 adapter = new SimpleCursorAdapter(this,
-                        android.R.layout.simple_list_item_1, // A textview
+                        R.layout.mynewlistview, // A textview
                         cursor, // cursor to a data collection
-                        new String[] {"ns"}, // column to be displayed
-                        new int[] {android.R.id.text1}, // ID of textview to display
+                        new String[] {"name", "score"}, // column to be displayed
+                        new int[] {R.id.tvListName,R.id.tvListScore}, // ID of textview to display
                         0);
 
                 lv = (ListView)findViewById(R.id.listView);
@@ -64,13 +64,13 @@ public class ScoreboardActivity extends ActionBarActivity {
 
                 helper = new GameDBHelper(this);
                 db = helper.getReadableDatabase();
-                cursor = db.rawQuery("SELECT _id, (name || '        ' || score) ns FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"medium"});
+                cursor = db.rawQuery("SELECT _id, name, score FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"medium"});
 
                 adapter = new SimpleCursorAdapter(this,
-                        android.R.layout.simple_list_item_1, // A textview
+                        R.layout.mynewlistview, // A textview
                         cursor, // cursor to a data collection
-                        new String[] {"ns"}, // column to be displayed
-                        new int[] {android.R.id.text1}, // ID of textview to display
+                        new String[] {"name", "score"}, // column to be displayed
+                        new int[] {R.id.tvListName,R.id.tvListScore}, // ID of textview to display
                         0);
 
                 lv = (ListView)findViewById(R.id.listView);
@@ -85,13 +85,13 @@ public class ScoreboardActivity extends ActionBarActivity {
 
                 helper = new GameDBHelper(this);
                 db = helper.getReadableDatabase();
-                cursor = db.rawQuery("SELECT _id, (name || '        ' || score) ns FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"hard"});
+                cursor = db.rawQuery("SELECT _id, name, score FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"hard"});
 
                 adapter = new SimpleCursorAdapter(this,
-                        android.R.layout.simple_list_item_1, // A textview
+                        R.layout.mynewlistview, // A textview
                         cursor, // cursor to a data collection
-                        new String[] {"ns"}, // column to be displayed
-                        new int[] {android.R.id.text1}, // ID of textview to display
+                        new String[] {"name", "score"}, // column to be displayed
+                        new int[] {R.id.tvListName,R.id.tvListScore}, // ID of textview to display
                         0);
 
                 lv = (ListView)findViewById(R.id.listView);

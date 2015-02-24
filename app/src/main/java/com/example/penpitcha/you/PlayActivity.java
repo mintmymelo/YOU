@@ -11,7 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.TextView;
 import android.widget.SimpleCursorAdapter;
-
+import android.widget.Toast;
 
 
 public class PlayActivity extends ActionBarActivity {
@@ -33,7 +33,7 @@ public class PlayActivity extends ActionBarActivity {
     static String newQ;
     int newScore = 50;
 
-    static int temp = 0;
+    int temp = 0;
 
     ContentValues r;
 
@@ -100,6 +100,13 @@ public class PlayActivity extends ActionBarActivity {
 
         if(newQ.indexOf('_') == -1){
 
+
+            Toast t = Toast.makeText(this.getApplicationContext(),
+                    "CORRECT ^0^ ~" + "The Answer = " + newQ,
+                    Toast.LENGTH_LONG);
+            t.show();
+
+
             temp = 0;
             n++;
             setRound();
@@ -111,9 +118,12 @@ public class PlayActivity extends ActionBarActivity {
         }
     }
 
+
     public String searchAndReplace(String word, String question, Character xxx){
         int indexLetter = word.indexOf(xxx);
         int y;
+        boolean isWrong=false;
+        int noWrongAnymore = 0;
 
         if(indexLetter == -1){
             newScore--;
@@ -124,8 +134,12 @@ public class PlayActivity extends ActionBarActivity {
                 if(word.charAt(y) == xxx){
 
                     if(question.charAt(y) != '_'){
-                        newScore--;
+                        if(noWrongAnymore != 777) {
+                            isWrong = true;
+                        }
                     }else{
+                        isWrong = false;
+                        noWrongAnymore = 777;
                         question = question.substring(0,y) + word.charAt(y) + question.substring(y+1);
                     }
 
@@ -133,9 +147,14 @@ public class PlayActivity extends ActionBarActivity {
 
                 }
             }
+
+            if(isWrong){
+                newScore--;
+            }
         }
         return question;
     }
+
 
 
     public void ButtonClicked(View v) {
