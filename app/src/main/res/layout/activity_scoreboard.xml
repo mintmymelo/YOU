@@ -109,14 +109,14 @@
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="220dp"
+            android:layout_height="235dp"
             android:id="@+id/listView"
             android:smoothScrollbar="true" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="65dp"
             android:gravity="center"
             android:layout_marginTop="5dp">
 

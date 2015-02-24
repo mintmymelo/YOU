@@ -94,6 +94,13 @@ public class PlayActivity extends ActionBarActivity {
             tvSV.setText(Integer.toString(newScore));
             tvRV.setText(Integer.toString(n)+"/5");
 
+        }
+    }
+
+    public void loadActivity(String newQ, int newScore){
+
+        if(newQ.indexOf('_') == -1){
+
             Button btA = (Button) findViewById(R.id.btA);
             Button btB = (Button) findViewById(R.id.btB);
             Button btC = (Button) findViewById(R.id.btC);
@@ -147,12 +154,6 @@ public class PlayActivity extends ActionBarActivity {
             btX.setEnabled(true);
             btY.setEnabled(true);
             btZ.setEnabled(true);
-        }
-    }
-
-    public void loadActivity(String newQ, int newScore){
-
-        if(newQ.indexOf('_') == -1){
 
             Toast t = Toast.makeText(this.getApplicationContext(),
                     "CORRECT ^0^ ~" + "The Answer = " + newQ,
@@ -242,6 +243,12 @@ public class PlayActivity extends ActionBarActivity {
 
             case R.id.btA:
                 isClicked = true;
+
+                if(isClicked){
+                    Button btA = (Button) findViewById(R.id.btA);
+                    btA.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'a');
@@ -251,15 +258,16 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btA = (Button) findViewById(R.id.btA);
-                    btA.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btB:
                 isClicked = true;
+
+                if(isClicked){
+                    Button btB = (Button) findViewById(R.id.btB);
+                    btB.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'b');
@@ -269,15 +277,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btB = (Button) findViewById(R.id.btB);
-                    btB.setEnabled(false);
-                }
 
                 break;
 
             case R.id.btC:
                 isClicked = true;
+                if(isClicked){
+                    Button btC = (Button) findViewById(R.id.btC);
+                    btC.setEnabled(false);
+                }
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'c');
@@ -287,15 +295,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btC = (Button) findViewById(R.id.btC);
-                    btC.setEnabled(false);
-                }
 
                 break;
 
             case R.id.btD:
                 isClicked = true;
+                if(isClicked){
+                    Button btD = (Button) findViewById(R.id.btD);
+                    btD.setEnabled(false);
+                }
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'd');
@@ -305,15 +313,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btD = (Button) findViewById(R.id.btD);
-                    btD.setEnabled(false);
-                }
 
                 break;
 
             case R.id.btE:
                 isClicked = true;
+                if(isClicked){
+                    Button btE = (Button) findViewById(R.id.btE);
+                    btE.setEnabled(false);
+                }
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'e');
@@ -323,15 +331,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btE = (Button) findViewById(R.id.btE);
-                    btE.setEnabled(false);
-                }
 
                 break;
 
             case R.id.btF:
                 isClicked = true;
+                if(isClicked){
+                    Button btF = (Button) findViewById(R.id.btF);
+                    btF.setEnabled(false);
+                }
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'f');
@@ -341,15 +349,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btF = (Button) findViewById(R.id.btF);
-                    btF.setEnabled(false);
-                }
 
                 break;
 
             case R.id.btG:
                 isClicked = true;
+                if(isClicked){
+                    Button btG = (Button) findViewById(R.id.btG);
+                    btG.setEnabled(false);
+                }
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'g');
@@ -359,15 +367,16 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btG = (Button) findViewById(R.id.btG);
-                    btG.setEnabled(false);
-                }
 
                 break;
 
             case R.id.btH:
                 isClicked = true;
+                if(isClicked){
+                    Button btH = (Button) findViewById(R.id.btH);
+                    btH.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'h');
@@ -377,15 +386,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btH = (Button) findViewById(R.id.btH);
-                    btH.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btI:
                 isClicked = true;
+                if(isClicked){
+                    Button btI = (Button) findViewById(R.id.btI);
+                    btI.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'i');
@@ -395,15 +404,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btI = (Button) findViewById(R.id.btI);
-                    btI.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btJ:
                 isClicked = true;
+                if(isClicked){
+                    Button btJ = (Button) findViewById(R.id.btJ);
+                    btJ.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'j');
@@ -413,15 +422,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btJ = (Button) findViewById(R.id.btJ);
-                    btJ.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btK:
                 isClicked = true;
+                if(isClicked){
+                    Button btK = (Button) findViewById(R.id.btK);
+                    btK.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'k');
@@ -431,15 +440,14 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btK = (Button) findViewById(R.id.btK);
-                    btK.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btL:
                 isClicked = true;
+                if(isClicked){
+                    Button btL = (Button) findViewById(R.id.btL);
+                    btL.setEnabled(false);
+                }
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'l');
@@ -449,15 +457,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btL = (Button) findViewById(R.id.btL);
-                    btL.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btM:
                 isClicked = true;
+                if(isClicked){
+                    Button btM = (Button) findViewById(R.id.btM);
+                    btM.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'm');
@@ -467,15 +475,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btM = (Button) findViewById(R.id.btM);
-                    btM.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btN:
                 isClicked = true;
+                if(isClicked){
+                    Button btN = (Button) findViewById(R.id.btN);
+                    btN.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'n');
@@ -485,15 +493,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btN = (Button) findViewById(R.id.btN);
-                    btN.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btO:
                 isClicked = true;
+                if(isClicked){
+                    Button btO = (Button) findViewById(R.id.btO);
+                    btO.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'o');
@@ -503,15 +511,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btO = (Button) findViewById(R.id.btO);
-                    btO.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btP:
                 isClicked = true;
+                if(isClicked){
+                    Button btP = (Button) findViewById(R.id.btP);
+                    btP.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'p');
@@ -521,15 +529,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btP = (Button) findViewById(R.id.btP);
-                    btP.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btQ:
                 isClicked = true;
+                if(isClicked){
+                    Button btQ = (Button) findViewById(R.id.btQ);
+                    btQ.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'q');
@@ -539,16 +547,16 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btQ = (Button) findViewById(R.id.btQ);
-                    btQ.setEnabled(false);
-                }
-
                 break;
 
 
             case R.id.btR:
                 isClicked = true;
+                if(isClicked){
+                    Button btR = (Button) findViewById(R.id.btR);
+                    btR.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'r');
@@ -558,15 +566,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btR = (Button) findViewById(R.id.btR);
-                    btR.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btS:
                 isClicked = true;
+                if(isClicked){
+                    Button btS = (Button) findViewById(R.id.btS);
+                    btS.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 's');
@@ -576,15 +584,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btS = (Button) findViewById(R.id.btS);
-                    btS.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btT:
                 isClicked = true;
+                if(isClicked){
+                    Button btT = (Button) findViewById(R.id.btT);
+                    btT.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 't');
@@ -594,15 +602,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btT = (Button) findViewById(R.id.btT);
-                    btT.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btU:
                 isClicked = true;
+                if(isClicked){
+                    Button btU = (Button) findViewById(R.id.btU);
+                    btU.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'u');
@@ -612,15 +620,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btU = (Button) findViewById(R.id.btU);
-                    btU.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btV:
                 isClicked = true;
+                if(isClicked){
+                    Button btV = (Button) findViewById(R.id.btV);
+                    btV.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'v');
@@ -630,15 +638,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btV = (Button) findViewById(R.id.btV);
-                    btV.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btW:
                 isClicked = true;
+                if(isClicked){
+                    Button btW = (Button) findViewById(R.id.btW);
+                    btW.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'w');
@@ -648,15 +656,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btW = (Button) findViewById(R.id.btW);
-                    btW.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btX:
                 isClicked = true;
+                if(isClicked){
+                    Button btX = (Button) findViewById(R.id.btX);
+                    btX.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'x');
@@ -666,15 +674,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btX = (Button) findViewById(R.id.btX);
-                    btX.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btY:
                 isClicked = true;
+                if(isClicked){
+                    Button btY = (Button) findViewById(R.id.btY);
+                    btY.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'y');
@@ -684,15 +692,15 @@ public class PlayActivity extends ActionBarActivity {
 
                 loadActivity(newQ,newScore);
 
-                if(isClicked){
-                    Button btY = (Button) findViewById(R.id.btY);
-                    btY.setEnabled(false);
-                }
-
                 break;
 
             case R.id.btZ:
                 isClicked = true;
+                if(isClicked){
+                    Button btZ = (Button) findViewById(R.id.btZ);
+                    btZ.setEnabled(false);
+                }
+
                 temp++;
                 if(temp == 1) {
                     newQ = searchAndReplace(word, question, 'z');
@@ -701,11 +709,6 @@ public class PlayActivity extends ActionBarActivity {
                 }
 
                 loadActivity(newQ,newScore);
-
-                if(isClicked){
-                    Button btZ = (Button) findViewById(R.id.btZ);
-                    btZ.setEnabled(false);
-                }
 
                 break;
         }
