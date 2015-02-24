@@ -17,11 +17,12 @@
         android:layout_height="wrap_content"
         android:text="BLANK SPACE"
         android:id="@+id/textView"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:textIsSelectable="false"
-        android:textSize="35dp"
+        android:textSize="37dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,17 +38,17 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etName"
-        android:background="#fffeff8e"
+        android:background="#ffededed"
         android:textSize="33dp"
         android:layout_below="@+id/textView2"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="19dp" />
+        android:layout_marginTop="12dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:id="@+id/linearLayout"
         android:layout_below="@+id/etName"
         android:layout_alignParentStart="true">
@@ -65,7 +66,7 @@
                 android:textSize="30dp"
                 android:layout_centerVertical="true"
                 android:layout_alignStart="@+id/textView2"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="29dp"
                 android:layout_gravity="right"
                 android:layout_marginRight="25dp" />
         </LinearLayout>
@@ -87,7 +88,8 @@
                     android:id="@+id/btEasy"
                     android:layout_above="@+id/textView3"
                     android:layout_alignEnd="@+id/textView2"
-                    android:textSize="25dp" />
+                    android:textSize="25dp"
+                    android:textColor="#ff393939" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -97,7 +99,8 @@
                     android:layout_below="@+id/btEasy"
                     android:layout_alignStart="@+id/btEasy"
                     android:layout_column="3"
-                    android:textSize="25dp" />
+                    android:textSize="25dp"
+                    android:textColor="#ff393939" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -106,13 +109,14 @@
                     android:id="@+id/btHard"
                     android:layout_below="@+id/btMedium"
                     android:layout_alignStart="@+id/btMedium"
-                    android:textSize="25dp" />
+                    android:textSize="25dp"
+                    android:textColor="#ff393939" />
             </RadioGroup>
         </LinearLayout>
     </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="PLAY"
         android:id="@+id/btPlay"
@@ -120,19 +124,22 @@
         android:textColor="#ffffffff"
         android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:onClick="ButtonClicked" />
+        android:layout_marginTop="24dp"
+        android:onClick="ButtonClicked"
+        android:textStyle="bold"
+        android:textSize="30dp" />
 
     <Button
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="ScoreBoard"
         android:id="@+id/btScoreboard"
         android:background="#ff373737"
         android:textColor="#ffffffff"
         android:layout_below="@+id/btPlay"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:onClick="ButtonClicked" />
+        android:layout_marginTop="10dp"
+        android:onClick="ButtonClicked"
+        android:textSize="18dp" />
 
 </RelativeLayout>
