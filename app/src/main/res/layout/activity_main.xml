@@ -36,7 +36,7 @@
 
     <EditText
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:id="@+id/etName"
         android:background="#ffededed"
         android:textSize="33dp"

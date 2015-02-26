@@ -13,19 +13,41 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ScoreboardActivity extends ActionBarActivity {
 
     GameDBHelper helper;
     SQLiteDatabase db;
-    int rank = 0;
     SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
+
+        TextView tvSBLevelName;
+        Cursor cursor;
+        ListView lv;
+
+        tvSBLevelName = (TextView) findViewById(R.id.tvSBLevelName);
+        tvSBLevelName.setText("------------ [ Level : Easy ] ------------");
+
+        helper = new GameDBHelper(this);
+        db = helper.getReadableDatabase();
+        cursor = db.rawQuery("SELECT _id, name, score FROM scoreboard WHERE level=? ORDER BY score DESC;", new String[]{"easy"});
+
+        adapter = new SimpleCursorAdapter(this,
+                R.layout.mynewlistview, // A textview
+                cursor, // cursor to a data collection
+                new String[] {"name", "score"}, // column to be displayed
+                new int[] {R.id.tvListName,R.id.tvListScore}, // ID of textview to display
+                0);
+
+        lv = (ListView)findViewById(R.id.listView);
+        lv.setAdapter(adapter);
+
     }
 
 
@@ -108,7 +130,11 @@ public class ScoreboardActivity extends ActionBarActivity {
             case R.id.btResetList:
 
                 db = helper.getWritableDatabase();
-                int n_rows = db.delete("scoreboard", "", null);
+                db.delete("scoreboard", "", null);
+                Toast t = Toast.makeText(this.getApplicationContext(),
+                        "Scoreboard RESET!",
+                        Toast.LENGTH_LONG);
+                t.show();
 
 
                 break;

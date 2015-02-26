@@ -32,7 +32,7 @@ public class PlayActivity extends ActionBarActivity {
     TextView tvSV;
 
     static String newQ;
-    int newScore = 50;
+    int newScore = 25;
 
     int temp = 0;
 
@@ -79,7 +79,8 @@ public class PlayActivity extends ActionBarActivity {
             r.put("name", playName);
             r.put("score", newScore);
             r.put("level", playLevel);
-            long new_id = db.insert("scoreboard", null, r);
+            db.insert("scoreboard", null, r);
+
 
             finish();
 
@@ -177,7 +178,7 @@ public class PlayActivity extends ActionBarActivity {
         int indexLetter = word.indexOf(xxx);
         int y;
         boolean isWrong=false;
-        int noWrongAnymore = 0;
+        boolean noWrongAnymore=false;
 
         if(indexLetter == -1){
             newScore--;
@@ -197,13 +198,14 @@ public class PlayActivity extends ActionBarActivity {
 
                 if(word.charAt(y) == xxx){
 
-                    if(question.charAt(y) != '_'){
-                        if(noWrongAnymore != 777) {
-                            isWrong = true;
+                    if(question.charAt(y) != '_'){   // ถ้ามันเป็นตัวอักษร
+                        if(noWrongAnymore != true) { //ถ้ามันไม่ได้เข้า else ข้างล่าง ถือว่า ผิด!! มันไม่ใช่คำตอบ !!!
+                            isWrong = true;   // ผิดดดด
                         }
+
                     }else{
-                        isWrong = false;
-                        noWrongAnymore = 777;
+                        isWrong = false; /// ถูกกกก
+                        noWrongAnymore = true;
                         question = question.substring(0,y) + word.charAt(y) + question.substring(y+1);
                     }
 
