@@ -10,9 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
+
 
     SQLiteDatabase db;
     GameDBHelper helper = new GameDBHelper(this);
@@ -26,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
     public void ButtonClicked(View v) {
         int id = v.getId();
         Intent i;
+
 
         switch(id) {
             case R.id.btPlay:
@@ -46,11 +49,20 @@ public class MainActivity extends ActionBarActivity {
                     levelName = "hard";
                 }
 
+                if(name.trim().length()==0) {
+                    Toast t = Toast.makeText(this.getApplicationContext(),
+                            "Please input your name ^_^",
+                            Toast.LENGTH_SHORT);
+                    t.show();
 
-                i = new Intent(this, PlayActivity.class);
-                i.putExtra("playerName", name);
-                i.putExtra("playerLevel", levelName);
-                startActivity(i);
+                }else{
+                    i = new Intent(this, PlayActivity.class);
+                    i.putExtra("playerName", name);
+                    i.putExtra("playerLevel", levelName);
+                    startActivity(i);
+                }
+
+
                 break;
 
             case R.id.btScoreboard:

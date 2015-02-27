@@ -56,7 +56,7 @@ public class PlayActivity extends ActionBarActivity {
         helper = new GameDBHelper(this);
 
         db = helper.getReadableDatabase();
-        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=?;", new String[]{playLevel});
+        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=? ORDER BY RANDOM() LIMIT 5;", new String[]{playLevel});
 
         cursor.moveToFirst(); //get the first row
 
@@ -73,6 +73,10 @@ public class PlayActivity extends ActionBarActivity {
     public void setRound(){
 
         if(cursor.isLast()){
+
+            if(playName==null){
+                playName="player";
+            }
 
             db = helper.getWritableDatabase();
             r = new ContentValues();

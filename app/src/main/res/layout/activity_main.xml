@@ -30,7 +30,7 @@
         android:text="Please Enter Your Name"
         android:id="@+id/textView2"
         android:layout_marginTop="36dp"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
 
@@ -42,7 +42,9 @@
         android:textSize="33dp"
         android:layout_below="@+id/textView2"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        android:singleLine="true"
+        android:hint="player name" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -89,7 +91,9 @@
                     android:layout_above="@+id/textView3"
                     android:layout_alignEnd="@+id/textView2"
                     android:textSize="25dp"
-                    android:textColor="#ff393939" />
+                    android:textColor="#ff393939"
+                    android:enabled="true"
+                    android:checked="true" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -99,8 +103,9 @@
                     android:layout_below="@+id/btEasy"
                     android:layout_alignStart="@+id/btEasy"
                     android:layout_column="3"
-                    android:textSize="25dp"
-                    android:textColor="#ff393939" />
+                    android:textSize="20dp"
+                    android:textColor="#ff393939"
+                    android:enabled="true" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -110,7 +115,8 @@
                     android:layout_below="@+id/btMedium"
                     android:layout_alignStart="@+id/btMedium"
                     android:textSize="25dp"
-                    android:textColor="#ff393939" />
+                    android:textColor="#ff393939"
+                    android:enabled="true" />
             </RadioGroup>
         </LinearLayout>
     </LinearLayout>
