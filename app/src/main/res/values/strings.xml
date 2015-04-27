@@ -9,5 +9,7 @@
     <string name="title_activity_finish">FinishActivity</string>
     <string name="title_activity_scoreboard">ScoreboardActivity</string>
     <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_vocab_list">VocabListActivity</string>
+    <string name="title_activity_vocab_def">VocabDefActivity</string>
 
 </resources>

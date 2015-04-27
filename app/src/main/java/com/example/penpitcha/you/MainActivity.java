@@ -60,6 +60,8 @@ public class MainActivity extends ActionBarActivity {
                     i.putExtra("playerName", name);
                     i.putExtra("playerLevel", levelName);
                     startActivity(i);
+
+
                 }
 
 
@@ -67,6 +69,28 @@ public class MainActivity extends ActionBarActivity {
 
             case R.id.btScoreboard:
                 i = new Intent(this, ScoreboardActivity.class);
+                startActivity(i);
+                break;
+
+            case R.id.btLearn:
+
+
+                RadioGroup rLevel2 = (RadioGroup)findViewById(R.id.rbtLevel);
+                int level2 = rLevel2.getCheckedRadioButtonId();
+
+                String levelName2;
+
+                if(level2 == R.id.btEasy) {
+                    levelName2 = "easy";
+                }else if(level2 == R.id.btMedium){
+                    levelName2 = "medium";
+                }else{
+                    levelName2 = "hard";
+                }
+
+                i = new Intent(this, VocabListActivity.class);
+                i.putExtra("playerLevel2", levelName2);
+
                 startActivity(i);
                 break;
 

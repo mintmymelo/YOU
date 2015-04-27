@@ -142,10 +142,24 @@
         android:id="@+id/btScoreboard"
         android:background="#ff373737"
         android:textColor="#ffffffff"
-        android:layout_below="@+id/btPlay"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
         android:onClick="ButtonClicked"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        android:layout_below="@+id/btPlay"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp" />
+
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:text="Learn"
+        android:id="@+id/btLearn"
+        android:background="#ff373737"
+        android:textColor="#ffffffff"
+        android:onClick="ButtonClicked"
+        android:textSize="18dp"
+        android:layout_alignTop="@+id/btScoreboard"
+        android:layout_alignRight="@+id/linearLayout"
+        android:layout_alignEnd="@+id/linearLayout" />
 
 </RelativeLayout>
