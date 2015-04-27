@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -41,9 +42,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public class VocabListActivity extends ActionBarActivity {
+public class VocabListActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
-    //String lv = "easy";
     ArrayList<Map<String, String>> data;
     SimpleAdapter adapter;
     String playLevel;
@@ -72,34 +72,22 @@ public class VocabListActivity extends ActionBarActivity {
         ListView l = (ListView)findViewById(R.id.lvName);
         l.setAdapter(adapter);
 
+        l.setOnItemClickListener(this);
+
         LoadMessageTask task = new LoadMessageTask();
         task.execute();
     }
 
-    public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                   int position, long id) {
-        SQLiteDatabase db = helper.getWritableDatabase();
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        int n = db.delete("course",
-                "_id = ?",
-                new String[]{Long.toString(id)});
+        String word = data.get(position).get("name");
 
-        if (n == 1) {
-            Toast t = Toast.makeText(this.getApplicationContext(),
-                    "Successfully deleted the selected item.",
-                    Toast.LENGTH_SHORT);
-            t.show();
+        //System.out.println(word);
 
-            // retrieve a new collection of records
-            Cursor cursor = db.rawQuery(
-                    "SELECT _id, code, (    grade || ' (' || credit || ' credits)'     )    g FROM course;",
-                    null);
+        Intent intent = new Intent(this, VocabDefActivity.class);
+        intent.putExtra("wordClicked", word);
+        startActivity(intent);
 
-            // update the adapter
-            adapter.changeCursor(cursor);
-        }
-        db.close();
-        return true;
     }
 
     class LoadMessageTask extends AsyncTask<String, Void, Boolean> {
@@ -121,7 +109,7 @@ public class VocabListActivity extends ActionBarActivity {
                 URL u = new URL("http://ict.siit.tu.ac.th/~u5522781632/androidproj/fetch.php?level="
                         + playLevel);
                 HttpURLConnection h = (HttpURLConnection)u.openConnection();
-                //h.setRequestMethod("GET");
+                h.setRequestMethod("GET");
                 h.setDoInput(true);
                 h.connect();
 
@@ -156,7 +144,6 @@ public class VocabListActivity extends ActionBarActivity {
                         //item.put("message", MESSAGE);
                         data.add(0, item);
 
-                        //System.out.println(data.indexOf(i));
 
                     }
                     errorMsg = "";
