@@ -45,6 +45,8 @@ public class PlayActivity extends ActionBarActivity {
     //SQLiteDatabase db;
     int n = 1;
 
+    int question_row = 0;
+
     String word;
     String question;
 
@@ -85,8 +87,7 @@ public class PlayActivity extends ActionBarActivity {
 
         //cursor.moveToFirst();   //get the first row
 
-        word = data.get(0).get("name");//cursor.getString(cursor.getColumnIndex("word"));
-        question = data.get(0).get("question");//cursor.getString(cursor.getColumnIndex("question"));
+
 
         //lvQ = (ListView)findViewById(R.id.myLV);
 
@@ -109,18 +110,18 @@ public class PlayActivity extends ActionBarActivity {
         }
 */
         //word = data.get(0).get("name");
-        int i;
+        //int i;
         //for(i=0; i < data.size(); i++){
          //   question = data.get(0).get("question");
           //  tvQ.setText(question);
         //}
 
 
+
         tvSV = (TextView)findViewById(R.id.tvScoreValue);
         tvSV.setText(Integer.toString(newScore));
 
-        tvQ = (TextView)findViewById(R.id.tvQuestion);
-        tvQ.setText(question);
+
 
 
 
@@ -167,12 +168,14 @@ public class PlayActivity extends ActionBarActivity {
                         Map<String, String> item = new HashMap<String, String>();
                         item.put("name", NAME);
                         item.put("question", QUESTION);
-                        data.add(0, item);
+                        data.add(item);
+                        /*
                         if(data.isEmpty()) {
                             System.out.println("empty jaaa ===================================================");
                         }else {
                             System.out.println("found !!!! -=====================================================");
                         }
+                        */
                     }
 
  //                   data = new ArrayList<Map<String, String>>();
@@ -206,19 +209,27 @@ public class PlayActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-                adapter.notifyDataSetChanged();
-                lastUpdate = System.currentTimeMillis();
-                Toast t = Toast.makeText(PlayActivity.this.getApplicationContext(),
-                        "Updated the definitions",
-                        Toast.LENGTH_SHORT);
-                t.show();
+
+                word = data.get(question_row).get("name");//cursor.getString(cursor.getColumnIndex("word"));
+                question = data.get(question_row).get("question");//cursor.getString(cursor.getColumnIndex("question"));
+
+                tvQ = (TextView)findViewById(R.id.tvQuestion);
+                tvQ.setText(question);
+                question_row++;
+
+                //adapter.notifyDataSetChanged();
+                //lastUpdate = System.currentTimeMillis();
+                //Toast t = Toast.makeText(PlayActivity.this.getApplicationContext(),
+                //        "Updated the definitions",
+                 //       Toast.LENGTH_SHORT);
+                //t.show();
             }
         }
     }
 
     public void setRound(){
         //cursor.isLast()
-        if(false){
+        if(question_row > 4){
 
             if(playName==null){
                 playName="player";
@@ -242,6 +253,11 @@ public class PlayActivity extends ActionBarActivity {
             word = cursor.getString(cursor.getColumnIndex("word"));
             question = cursor.getString(cursor.getColumnIndex("question"));
 */
+
+            word = data.get(question_row).get("name");//cursor.getString(cursor.getColumnIndex("word"));
+            question = data.get(question_row).get("question");//cursor.getString(cursor.getColumnIndex("question"));
+
+            question_row++;
 
             tvQ.setText(question);
             tvSV.setText(Integer.toString(newScore));
