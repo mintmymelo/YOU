@@ -1,6 +1,5 @@
 package com.example.penpitcha.you;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -9,27 +8,33 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -45,7 +50,7 @@ public class PlayActivity extends ActionBarActivity {
     //SQLiteDatabase db;
     int n = 1;
 
-    int question_row = 0;
+    int question_round = 0;
 
     String word;
     String question;
@@ -54,11 +59,11 @@ public class PlayActivity extends ActionBarActivity {
     TextView tvQ;
     TextView tvSV;
 
-    ListView lvQ;
+    //ListView lvQ;
 
     static String newQ;
     int newScore = 25;
-
+    String scoreEiei;
     int temp = 0;
 
     //ContentValues r;
@@ -88,42 +93,17 @@ public class PlayActivity extends ActionBarActivity {
         //cursor.moveToFirst();   //get the first row
 
 
-
-        //lvQ = (ListView)findViewById(R.id.myLV);
-
-
-        //adapter = new ArrayAdapter(this, R.layout.lvq, data);
+        //adapter = new ArrayAdapter(this, R.layout.lvq
+        // , data);
 
           //      new String[] {"question"},
            //     new int[] {R.id.tvQQ});
 
-
-        //lvQ.setAdapter((android.widget.ListAdapter) adapter.getItem(0));
-
-        //LoadMessageTask task = new LoadMessageTask();
-        //task.execute();
-
-/*        if(data.isEmpty()) {
-            tvQ.setText("empty");
-        }else{
-            tvQ.setText(data.get(0).get("question"));
-        }
-*/
-        //word = data.get(0).get("name");
-        //int i;
-        //for(i=0; i < data.size(); i++){
-         //   question = data.get(0).get("question");
-          //  tvQ.setText(question);
-        //}
-
+        //lvQ = (ListView)findViewById(R.id.myLV);
 
 
         tvSV = (TextView)findViewById(R.id.tvScoreValue);
         tvSV.setText(Integer.toString(newScore));
-
-
-
-
 
     }
 
@@ -146,6 +126,8 @@ public class PlayActivity extends ActionBarActivity {
                 h.setRequestMethod("GET");
                 h.setDoInput(true);
                 h.connect();
+
+
 
                 int response = h.getResponseCode();
                 if (response == 200) {
@@ -178,16 +160,6 @@ public class PlayActivity extends ActionBarActivity {
                         */
                     }
 
- //                   data = new ArrayList<Map<String, String>>();
-
-
-
-/*                    if(data.isEmpty()) {
-                        tvQ.setText("empty");
-                    }else{
-                        tvQ.setText(data.get(0).get(question));
-                    }
-*/
                     errorMsg = "";
 
 
@@ -210,30 +182,82 @@ public class PlayActivity extends ActionBarActivity {
         protected void onPostExecute(Boolean result) {
             if (result) {
 
-                word = data.get(question_row).get("name");//cursor.getString(cursor.getColumnIndex("word"));
-                question = data.get(question_row).get("question");//cursor.getString(cursor.getColumnIndex("question"));
+                word = data.get(question_round).get("name");//cursor.getString(cursor.getColumnIndex("word"));
+                question = data.get(question_round).get("question");//cursor.getString(cursor.getColumnIndex("question"));
 
                 tvQ = (TextView)findViewById(R.id.tvQuestion);
                 tvQ.setText(question);
-                question_row++;
+                question_round++;
 
-                //adapter.notifyDataSetChanged();
-                //lastUpdate = System.currentTimeMillis();
-                //Toast t = Toast.makeText(PlayActivity.this.getApplicationContext(),
-                //        "Updated the definitions",
-                 //       Toast.LENGTH_SHORT);
-                //t.show();
             }
         }
     }
 
+
+    class PostMessageTask extends AsyncTask<String, Void, Boolean> {
+        String line;
+        StringBuilder buffer = new StringBuilder();
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            String name = params[0];
+            String level = params[1];
+            String score = params[2];
+
+            HttpClient h = new DefaultHttpClient();
+            HttpPost p = new HttpPost("http://ict.siit.tu.ac.th/~u5522781632/androidproj/post.php");
+
+            List<NameValuePair> values = new ArrayList<NameValuePair>();
+            values.add(new BasicNameValuePair("name", name));
+            values.add(new BasicNameValuePair("level", level));
+            values.add(new BasicNameValuePair("score", score));
+            try {
+                p.setEntity(new UrlEncodedFormEntity(values));
+                HttpResponse response = h.execute(p);
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(response.getEntity().getContent()));
+                while((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+                return true;
+            } catch (UnsupportedEncodingException e) {
+                Log.e("Error", "Invalid encoding");
+            } catch (ClientProtocolException e) {
+                Log.e("Error", "Error in posting a message");
+            } catch (IOException e) {
+                Log.e("Error", "I/O Exception");
+            }
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (result) {
+                Toast t = Toast.makeText(PlayActivity.this.getApplicationContext(),
+                        "Successfully insert score",
+                        Toast.LENGTH_SHORT);
+                t.show();
+            }
+            else {
+                Toast t = Toast.makeText(PlayActivity.this.getApplicationContext(),
+                        "Unable to insert score",
+                        Toast.LENGTH_SHORT);
+                t.show();
+            }
+        }
+    }
+
+
     public void setRound(){
         //cursor.isLast()
-        if(question_row > 4){
+        if(question_round > 4){
 
             if(playName==null){
                 playName="player";
             }
+
+            scoreEiei = Integer.toString(newScore);
 /*
             db = helper.getWritableDatabase();
             r = new ContentValues();
@@ -242,6 +266,10 @@ public class PlayActivity extends ActionBarActivity {
             r.put("level", playLevel);
             db.insert("scoreboard", null, r);
 */
+
+            PostMessageTask p = new PostMessageTask();
+            p.execute(playName,playLevel,scoreEiei);
+
 
             finish();
 
@@ -254,10 +282,10 @@ public class PlayActivity extends ActionBarActivity {
             question = cursor.getString(cursor.getColumnIndex("question"));
 */
 
-            word = data.get(question_row).get("name");//cursor.getString(cursor.getColumnIndex("word"));
-            question = data.get(question_row).get("question");//cursor.getString(cursor.getColumnIndex("question"));
+            word = data.get(question_round).get("name");//cursor.getString(cursor.getColumnIndex("word"));
+            question = data.get(question_round).get("question");//cursor.getString(cursor.getColumnIndex("question"));
 
-            question_row++;
+            question_round++;
 
             tvQ.setText(question);
             tvSV.setText(Integer.toString(newScore));
