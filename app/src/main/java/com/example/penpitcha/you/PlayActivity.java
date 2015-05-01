@@ -2,26 +2,47 @@ package com.example.penpitcha.you;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class PlayActivity extends ActionBarActivity {
 
-    GameDBHelper helper;
-    Cursor cursor;
+    ArrayList<Map<String, String>> data;
+    ArrayAdapter adapter;
+
+    //GameDBHelper helper;
+    //Cursor cursor;
     String playName;
     String playLevel;
-    SQLiteDatabase db;
+    //SQLiteDatabase db;
     int n = 1;
 
     String word;
@@ -31,12 +52,14 @@ public class PlayActivity extends ActionBarActivity {
     TextView tvQ;
     TextView tvSV;
 
+    ListView lvQ;
+
     static String newQ;
     int newScore = 25;
 
     int temp = 0;
 
-    ContentValues r;
+    //ContentValues r;
 
 
     @Override
@@ -53,47 +76,172 @@ public class PlayActivity extends ActionBarActivity {
         tvRV = (TextView)findViewById(R.id.tvRoundValue);
         tvRV.setText(Integer.toString(n)+"/5");
 
-        helper = new GameDBHelper(this);
+        LoadMessageTask task = new LoadMessageTask();
+        task.execute();
+        //helper = new GameDBHelper(this);
 
-        db = helper.getReadableDatabase();
-        cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=? ORDER BY RANDOM() LIMIT 5;", new String[]{playLevel});
+        //db = helper.getReadableDatabase();
+        //cursor = db.rawQuery("SELECT word, question FROM vocabulary WHERE level=? ORDER BY RANDOM() LIMIT 5;", new String[]{playLevel});
 
-        cursor.moveToFirst(); //get the first row
+        //cursor.moveToFirst();   //get the first row
 
-        word = cursor.getString(cursor.getColumnIndex("word"));
-        question = cursor.getString(cursor.getColumnIndex("question"));
+        word = data.get(0).get("name");//cursor.getString(cursor.getColumnIndex("word"));
+        question = data.get(0).get("question");//cursor.getString(cursor.getColumnIndex("question"));
 
-        tvQ = (TextView)findViewById(R.id.tvQuestion);
-        tvQ.setText(question);
+        //lvQ = (ListView)findViewById(R.id.myLV);
+
+
+        //adapter = new ArrayAdapter(this, R.layout.lvq, data);
+
+          //      new String[] {"question"},
+           //     new int[] {R.id.tvQQ});
+
+
+        //lvQ.setAdapter((android.widget.ListAdapter) adapter.getItem(0));
+
+        //LoadMessageTask task = new LoadMessageTask();
+        //task.execute();
+
+/*        if(data.isEmpty()) {
+            tvQ.setText("empty");
+        }else{
+            tvQ.setText(data.get(0).get("question"));
+        }
+*/
+        //word = data.get(0).get("name");
+        int i;
+        //for(i=0; i < data.size(); i++){
+         //   question = data.get(0).get("question");
+          //  tvQ.setText(question);
+        //}
+
+
         tvSV = (TextView)findViewById(R.id.tvScoreValue);
         tvSV.setText(Integer.toString(newScore));
 
+        tvQ = (TextView)findViewById(R.id.tvQuestion);
+        tvQ.setText(question);
+
+
+
+    }
+
+    class LoadMessageTask extends AsyncTask<String, Void, Boolean> {
+
+        String NAME,QUESTION;
+        String errorMsg = "";
+        long lastUpdate = 0;
+
+        protected Boolean doInBackground(String... params) {
+            BufferedReader reader;
+            StringBuilder buffer = new StringBuilder();
+            String line;
+
+            try {
+                Log.e("LoadMessageTask", "" + playLevel);
+                URL u = new URL("http://ict.siit.tu.ac.th/~u5522781632/androidproj/fetchques.php?level="
+                        + playLevel);
+                HttpURLConnection h = (HttpURLConnection) u.openConnection();
+                h.setRequestMethod("GET");
+                h.setDoInput(true);
+                h.connect();
+
+                int response = h.getResponseCode();
+                if (response == 200) {
+                    reader = new BufferedReader(new InputStreamReader(h.getInputStream()));
+                    while ((line = reader.readLine()) != null) {
+                        buffer.append(line);
+                    }
+
+                    Log.e("LoadMessageTask", buffer.toString());
+                    JSONObject json = new JSONObject(buffer.toString());
+
+                    int length = json.getJSONArray("msg").length();
+
+                    data = new ArrayList<Map<String, String>>();
+
+                    for (int i = 0; i < length; i++) {
+                        NAME = json.getJSONArray("msg").getJSONObject(i).getString("name");
+                        QUESTION = json.getJSONArray("msg").getJSONObject(i).getString("question");
+
+                        Map<String, String> item = new HashMap<String, String>();
+                        item.put("name", NAME);
+                        item.put("question", QUESTION);
+                        data.add(0, item);
+                        if(data.isEmpty()) {
+                            System.out.println("empty jaaa ===================================================");
+                        }else {
+                            System.out.println("found !!!! -=====================================================");
+                        }
+                    }
+
+ //                   data = new ArrayList<Map<String, String>>();
+
+
+
+/*                    if(data.isEmpty()) {
+                        tvQ.setText("empty");
+                    }else{
+                        tvQ.setText(data.get(0).get(question));
+                    }
+*/
+                    errorMsg = "";
+
+
+                    return true;
+
+                } else {
+                    errorMsg = "HTTP Error";
+                }
+            } catch (MalformedURLException e) {
+                Log.e("LoadMessageTask", "Invalid URL");
+            } catch (IOException e) {
+                Log.e("LoadMessageTask", "I/O Exception");
+            } catch (JSONException e) {
+                Log.e("LoadMessageTask", "Invalid JSON");
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (result) {
+                adapter.notifyDataSetChanged();
+                lastUpdate = System.currentTimeMillis();
+                Toast t = Toast.makeText(PlayActivity.this.getApplicationContext(),
+                        "Updated the definitions",
+                        Toast.LENGTH_SHORT);
+                t.show();
+            }
+        }
     }
 
     public void setRound(){
-
-        if(cursor.isLast()){
+        //cursor.isLast()
+        if(false){
 
             if(playName==null){
                 playName="player";
             }
-
+/*
             db = helper.getWritableDatabase();
             r = new ContentValues();
             r.put("name", playName);
             r.put("score", newScore);
             r.put("level", playLevel);
             db.insert("scoreboard", null, r);
-
+*/
 
             finish();
 
         }else {
 
+            /*
             cursor.moveToNext(); //get the next row
 
             word = cursor.getString(cursor.getColumnIndex("word"));
             question = cursor.getString(cursor.getColumnIndex("question"));
+*/
 
             tvQ.setText(question);
             tvSV.setText(Integer.toString(newScore));

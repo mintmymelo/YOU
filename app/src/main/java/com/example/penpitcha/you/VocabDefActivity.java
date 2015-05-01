@@ -49,17 +49,19 @@ public class VocabDefActivity extends ActionBarActivity {
         TextView tvN = (TextView)findViewById(R.id.tvName);
         tvN.setText(wordName);
 
-        /*data = new ArrayList<Map<String, String>>();
+        data = new ArrayList<Map<String, String>>();
         adapter = new SimpleAdapter(this,
                 data,
                 R.layout.deflistview,
                 new String[] {"type","definition"},
                 new int[] {R.id.tvType,R.id.tvDef});
-        ListView l = (ListView)findViewById(R.id.listView);
+        ListView l = (ListView)findViewById(R.id.listView2);
         l.setAdapter(adapter);
 
+
+
         LoadMessageTask task = new LoadMessageTask();
-        task.execute();*/
+        task.execute();
     }
 
     class LoadMessageTask extends AsyncTask<String, Void, Boolean> {

@@ -64,18 +64,26 @@ public class VocabListActivity extends ActionBarActivity implements AdapterView.
         tvL.setText(playLevel);
 
         data = new ArrayList<Map<String, String>>();
+
+
+
         adapter = new SimpleAdapter(this,
                 data,
                 android.R.layout.simple_list_item_1,
                 new String[] {"name"},
                 new int[] {android.R.id.text1});
+
+
+
         ListView l = (ListView)findViewById(R.id.lvName);
         l.setAdapter(adapter);
+
 
         l.setOnItemClickListener(this);
 
         LoadMessageTask task = new LoadMessageTask();
         task.execute();
+
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
